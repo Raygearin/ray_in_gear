@@ -60,3 +60,11 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 .tell-section .download-action{margin-top:1.8rem}
 @media(max-width:600px){.match-card{padding:1.1rem;border-radius:8px}.match-title{font-size:2.55rem}.interest-category summary{padding:1rem 2.6rem 1rem .9rem}.interest-category ul{padding-left:2rem}}
 
+/* Alternating monochrome photo and turquoise footer gallery */
+footer.footer-gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;width:100%;padding:0;border-top:1px solid var(--line);text-align:left;color:var(--ink);font-size:inherit}
+.footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;aspect-ratio:4/5;min-width:0;object-fit:cover}
+.footer-gallery img{filter:grayscale(1);height:auto}
+.footer-gallery .footer-color-field{background:#35d0c5}
+.footer-gallery .footer-color-field:nth-of-type(3n){background:#20b9ad}
+.footer-gallery .footer-color-field:nth-of-type(3n+1){background:#55dfd2}
+@media(max-width:760px){footer.footer-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
