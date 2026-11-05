@@ -75,3 +75,17 @@ body{min-height:100vh;display:flex;flex-direction:column}
 main{flex:1 0 auto}
 .home-main{padding-bottom:1rem}
 footer.footer-gallery{flex:0 0 auto;margin-bottom:2.45vw}
+
+
+/* Turquoise page identity and navigation tile accents */
+.tile{background:#101014;border:1px solid var(--tile-accent,#343039);transition:border-color .2s ease,box-shadow .2s ease}
+.tile h2,.tile h3{color:var(--tile-accent,#35d0c5)}
+.tile:hover{border-color:var(--tile-accent,#35d0c5);box-shadow:0 0 0 1px var(--tile-accent,#35d0c5)}
+body.page-home{--tile-accent:#35d0c5}
+body.page-books{--accent:#75e8df;--line:#398e88;--tile-accent:#75e8df}
+body.page-lab{--accent:#35d0c5;--line:#238e87;--tile-accent:#35d0c5}
+body.page-socials{--accent:#12b8ad;--line:#167d77;--tile-accent:#12b8ad}
+body.page-books h1,body.page-books h2,body.page-books h3,
+body.page-lab h1,body.page-lab h2,body.page-lab h3,
+body.page-socials h1,body.page-socials h2,body.page-socials h3{color:var(--tile-accent)}
+body.page-books .match-card,body.page-lab .match-card,body.page-socials .match-card{border-color:var(--tile-accent);background:#101014}
