@@ -129,30 +129,37 @@ body.page-home .tiles > .tile:hover {
   transform: translateY(-3px);
 }
 
-/* Seafoam Petrol palette for the three home-page tiles */
+/* Seafoam Petrol accents: black tile interiors, fine colored outlines and matching text */
 body.page-home .tiles > .tile:nth-child(1) {
-  --tile-accent: #164A43;
-  background: #C5E9DC;
-  border-color: #C5E9DC;
-  color: #164A43;
+  --tile-accent: #C5E9DC;
+  background: #101014;
+  border: 1px solid #C5E9DC;
+  color: #C5E9DC;
 }
-body.page-home .tiles > .tile:nth-child(1) h2 { color: #164A43; }
-body.page-home .tiles > .tile:nth-child(1) p { color: #245E54; }
-
 body.page-home .tiles > .tile:nth-child(2) {
-  --tile-accent: #103F38;
-  background: #6BAF9F;
-  border-color: #6BAF9F;
-  color: #103F38;
+  --tile-accent: #6BAF9F;
+  background: #101014;
+  border: 1px solid #6BAF9F;
+  color: #6BAF9F;
 }
-body.page-home .tiles > .tile:nth-child(2) h2 { color: #103F38; }
-body.page-home .tiles > .tile:nth-child(2) p { color: #164A43; }
-
 body.page-home .tiles > .tile:nth-child(3) {
-  --tile-accent: #FFFFFF;
-  background: #205E55;
-  border-color: #205E55;
-  color: #FFFFFF;
+  --tile-accent: #205E55;
+  background: #101014;
+  border: 1px solid #205E55;
+  color: #205E55;
 }
-body.page-home .tiles > .tile:nth-child(3) h2 { color: #FFFFFF; }
-body.page-home .tiles > .tile:nth-child(3) p { color: #E0F1EC; }
+body.page-home .tiles > .tile h2,
+body.page-home .tiles > .tile p {
+  color: var(--tile-accent);
+}
+body.page-home .tiles > .tile {
+  border-radius: 10px;
+  box-shadow: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+body.page-home .tiles > .tile:hover {
+  background: #101014;
+  border-color: var(--tile-accent);
+  box-shadow: 0 0 0 1px var(--tile-accent);
+  transform: none;
+}
