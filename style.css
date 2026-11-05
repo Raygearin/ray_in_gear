@@ -168,3 +168,19 @@ header nav a:focus-visible {
   outline: 2px solid #FFFFFF;
   outline-offset: 3px;
 }
+
+
+/* Unified pure-white branding and homepage tile headings */
+header > a,
+header > a strong,
+header nav a,
+body.page-home .hero-copy h1,
+body.page-home .tiles > .tile h2,
+body.page-books main > h1,
+body.page-lab main > h1,
+body.page-socials .social-intro h1 {
+  color: #FFFFFF;
+}
+body.page-home .tiles > .tile h2 {
+  color: #FFFFFF;
+}
