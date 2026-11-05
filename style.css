@@ -60,7 +60,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 @media(max-width:600px){.match-card{padding:1.1rem;border-radius:8px}.match-title{font-size:2.55rem}.interest-category summary{padding:1rem 2.6rem 1rem .9rem}.interest-category ul{padding-left:2rem}}
 
 /* One continuous footer row: alternating turquoise fields and monochrome photos */
-footer.footer-gallery{display:grid;grid-template-columns:repeat(17,minmax(0,1fr));grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0;width:100%;padding:0;border-top:1px solid var(--line);text-align:left;color:var(--ink);font-size:inherit;overflow:hidden}
+footer.footer-gallery{display:grid;grid-template-columns:repeat(17,minmax(0,1fr));grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0;width:100%;margin:0;padding:0;border:0;text-align:left;color:var(--ink);font-size:0;line-height:0;overflow:hidden}
 .footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;height:auto;aspect-ratio:4/5;min-width:0;object-fit:cover}
 .footer-gallery img{filter:grayscale(1)}
 .footer-gallery .footer-color-field{background:#35d0c5}
