@@ -39,4 +39,24 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 .footer-image{display:block;width:min(50%,600px);height:auto;margin:0 auto;border-radius:4px}
 @media(max-width:600px){.footer-image{width:72%}}
 
-/* Refresh GitHub Pages deployment. */
+
+/* Interest list and questionnaire sections */
+.match-card{max-width:940px;margin:3rem auto 0;background:var(--panel);border:1px solid var(--line);padding:clamp(1.25rem,4vw,2.5rem);border-radius:12px}
+.match-title{font-size:clamp(2.6rem,6vw,4rem);line-height:1.05;letter-spacing:-.045em;margin:.1rem 0 2rem;color:var(--ink)}
+.section-title{font-size:clamp(1.65rem,3.5vw,2.15rem);line-height:1.15;margin:0 0 .8rem;color:var(--accent)}
+.interest-section>p,.tell-section>p{max-width:72ch}
+.interest-accordion{display:grid;gap:.7rem;margin-top:1.5rem}
+.interest-category{background:#131318;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.interest-category summary{position:relative;cursor:pointer;list-style:none;padding:1rem 3rem 1rem 1.1rem;font-weight:700;color:var(--ink);line-height:1.35}
+.interest-category summary::-webkit-details-marker{display:none}
+.interest-category summary::after{content:"+";position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--accent);font-weight:500}
+.interest-category[open] summary::after{content:"−"}
+.interest-category summary:hover{color:var(--accent)}
+.interest-category summary:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+.interest-category ul{margin:0;padding:0 1.5rem 1.2rem 2.6rem;color:var(--muted)}
+.interest-category li{padding:.12rem 0}
+.tell-section{border-top:1px solid var(--line);margin-top:2.7rem;padding-top:2.2rem}
+.language-label{font-size:1.05rem;color:var(--ink);margin:1.3rem 0 .4rem}
+.tell-section .download-action{margin-top:1.8rem}
+@media(max-width:600px){.match-card{padding:1.1rem;border-radius:8px}.match-title{font-size:2.55rem}.interest-category summary{padding:1rem 2.6rem 1rem .9rem}.interest-category ul{padding-left:2rem}}
+
