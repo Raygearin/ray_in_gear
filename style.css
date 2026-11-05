@@ -91,66 +91,28 @@ body.page-socials h1,body.page-socials h2,body.page-socials h3{color:var(--tile-
 body.page-books .match-card,body.page-lab .match-card,body.page-socials .match-card{border-color:var(--tile-accent);background:#101014}
 
 
-/* Three-step turquoise palette for the three home-page tiles */
-body.page-home .tiles > .tile:nth-child(1) {
-  --tile-accent: #0b514b;
-  background: #a8f0e8;
-  border-color: #a8f0e8;
-  color: #0b3935;
-}
-body.page-home .tiles > .tile:nth-child(1) h2 { color: #0b514b; }
-body.page-home .tiles > .tile:nth-child(1) p { color: #185d56; }
-
-body.page-home .tiles > .tile:nth-child(2) {
-  --tile-accent: #083f3b;
-  background: #55cec3;
-  border-color: #55cec3;
-  color: #08332f;
-}
-body.page-home .tiles > .tile:nth-child(2) h2 { color: #083f3b; }
-body.page-home .tiles > .tile:nth-child(2) p { color: #104b46; }
-
-body.page-home .tiles > .tile:nth-child(3) {
-  --tile-accent: #f0fffd;
-  background: #167f78;
-  border-color: #167f78;
-  color: #f0fffd;
-}
-body.page-home .tiles > .tile:nth-child(3) h2 { color: #f0fffd; }
-body.page-home .tiles > .tile:nth-child(3) p { color: #d7f7f3; }
-
-body.page-home .tiles > .tile {
-  border-radius: 10px;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-}
-body.page-home .tiles > .tile:hover {
-  border-color: var(--tile-accent);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
-  transform: translateY(-3px);
-}
-
-/* Seafoam Petrol accents: black tile interiors, fine colored outlines and matching text */
+/* Seafoam Petrol: black tile interiors, thin colored outlines, colored titles, white descriptions */
 body.page-home .tiles > .tile:nth-child(1) {
   --tile-accent: #C5E9DC;
   background: #101014;
   border: 1px solid #C5E9DC;
-  color: #C5E9DC;
 }
 body.page-home .tiles > .tile:nth-child(2) {
   --tile-accent: #6BAF9F;
   background: #101014;
   border: 1px solid #6BAF9F;
-  color: #6BAF9F;
 }
 body.page-home .tiles > .tile:nth-child(3) {
   --tile-accent: #205E55;
   background: #101014;
   border: 1px solid #205E55;
-  color: #205E55;
 }
-body.page-home .tiles > .tile h2,
-body.page-home .tiles > .tile p {
+body.page-home .tiles > .tile h2 {
   color: var(--tile-accent);
+  font-weight: 700;
+}
+body.page-home .tiles > .tile p {
+  color: #FFFFFF;
 }
 body.page-home .tiles > .tile {
   border-radius: 10px;
