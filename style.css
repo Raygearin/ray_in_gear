@@ -31,6 +31,7 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 
 .language-divider{border:0;border-top:1px solid var(--line);margin:2rem 0}
 .tile h3{color:var(--accent);margin:1.25rem 0 .5rem}
-.download-box{display:block;margin-top:2rem;padding:1.1rem 1.25rem;border:1px solid var(--accent);background:#211b24;border-radius:8px;text-align:center}
-.download-box a{display:block;color:var(--ink);font-weight:600;text-decoration:none}
-.download-box a:hover{color:var(--accent)}
+.download-box{display:block;margin-top:2rem;padding:1.1rem 1.5rem;background:#35d0c5;border:1px solid #35d0c5;border-radius:8px;text-align:center;transition:background .2s ease,transform .2s ease}
+.download-box a{display:block;color:#101014;font-weight:700;text-decoration:none}
+.download-box:hover{background:#55e0d5;border-color:#55e0d5;transform:translateY(-1px)}
+.download-box a:hover{color:#101014}
