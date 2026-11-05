@@ -1,4 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Static GitHub Pages deployment
 name: Deploy static content to Pages
 
 on:
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-latest"
   cancel-in-progress: true
 
 jobs:
