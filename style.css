@@ -65,9 +65,9 @@ footer.footer-gallery{display:grid;grid-template-columns:.25fr repeat(8,minmax(0
 .footer-gallery img{filter:grayscale(1)}
 /* Crop the grey side slivers from the final photo */
 .footer-gallery img:last-of-type{transform:scale(1.65);object-fit:cover;object-position:center}
-.footer-gallery .footer-color-field{background:#35d0c5}
-.footer-gallery .footer-color-field:nth-child(4n+1){background:#20b9ad}
-.footer-gallery .footer-color-field:nth-child(4n+3){background:#55dfd2}
+.footer-gallery .footer-color-field{background:#205E55}
+.footer-gallery .footer-color-field:nth-child(4n+1){background:#205E55}
+.footer-gallery .footer-color-field:nth-child(4n+3){background:#205E55}
 
 /* Keep the footer at the bottom of the viewport on short pages */
 html{min-height:100%;background:var(--bg)}
