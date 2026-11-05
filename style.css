@@ -38,3 +38,5 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 
 .footer-image{display:block;width:min(50%,600px);height:auto;margin:0 auto;border-radius:4px}
 @media(max-width:600px){.footer-image{width:72%}}
+
+/* Refresh GitHub Pages deployment. */
