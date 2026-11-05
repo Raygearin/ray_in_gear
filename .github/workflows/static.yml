@@ -40,7 +40,7 @@ jobs:
             if printf '%s' "$statuses" | jq -e 'any(.[]; .state == "in_progress")' >/dev/null; then
               echo "Deactivating stale in-progress github-pages deployment $deployment_id ($deployment_sha)"
               gh api --method POST "repos/$repo/deployments/$deployment_id/statuses" -f state=inactive
-              gh api --method DELETE "repos/$repo/deployments/$deployment_id"
+              gh api --silent --method DELETE "repos/$repo/deployments/$deployment_id"
             fi
           done < <(gh api --paginate "repos/$repo/deployments?environment=github-pages&per_page=100" --jq '.[] | [.id, .sha] | @tsv')
       - name: Setup Pages
