@@ -24,10 +24,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cancel stale Pages deployment
+      - name: Clear stale Pages deployment
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/deployments/61df4ce02fca4465371080562faa34ca05a695b3/cancel"
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="$GITHUB_REPOSITORY"
+          stale_sha="61df4ce02fca4465371080562faa34ca05a695b3"
+          gh api --method POST "repos/$repo/pages/deployments/$stale_sha/cancel"
+          deployments="$(gh api "repos/$repo/deployments?sha=$stale_sha")"
+          deployment_id="$(printf '%s' "$deployments" | jq -r '.[] | select(.environment == "github-pages") | .id' | head -n 1)"
+          if [ -n "${deployment_id:-}" ]; then
+            echo "Deactivating stale deployment $deployment_id"
+            gh api --method POST "repos/$repo/deployments/$deployment_id/statuses" -f state=inactive
+            gh api --method DELETE "repos/$repo/deployments/$deployment_id"
+          else
+            echo "No matching active deployment record found."
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
