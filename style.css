@@ -66,3 +66,9 @@ footer.footer-gallery{display:grid;grid-template-columns:repeat(17,minmax(0,1fr)
 .footer-gallery .footer-color-field{background:#35d0c5}
 .footer-gallery .footer-color-field:nth-child(4n+1){background:#20b9ad}
 .footer-gallery .footer-color-field:nth-child(4n+3){background:#55dfd2}
+
+/* Keep the footer at the bottom of the viewport on short pages */
+html{min-height:100%;background:var(--bg)}
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+footer.footer-gallery{flex:0 0 auto}
