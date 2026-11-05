@@ -90,25 +90,24 @@ body.page-lab h1,body.page-lab h2,body.page-lab h3,
 body.page-socials h1,body.page-socials h2,body.page-socials h3{color:var(--tile-accent)}
 body.page-books .match-card,body.page-lab .match-card,body.page-socials .match-card{border-color:var(--tile-accent);background:#101014}
 
-
-/* Seafoam Petrol: black tile interiors, thin colored outlines, colored titles, white descriptions */
+/* Seafoam Petrol styling for homepage tiles and header quick links */
 body.page-home .tiles > .tile:nth-child(1) {
   --tile-accent: #C5E9DC;
   background: #101014;
-  border: 1px solid #C5E9DC;
+  border: 2px solid #C5E9DC;
 }
 body.page-home .tiles > .tile:nth-child(2) {
   --tile-accent: #6BAF9F;
   background: #101014;
-  border: 1px solid #6BAF9F;
+  border: 2px solid #6BAF9F;
 }
 body.page-home .tiles > .tile:nth-child(3) {
   --tile-accent: #205E55;
   background: #101014;
-  border: 1px solid #205E55;
+  border: 2px solid #205E55;
 }
 body.page-home .tiles > .tile h2 {
-  color: var(--tile-accent);
+  color: #FFFFFF;
   font-weight: 700;
 }
 body.page-home .tiles > .tile p {
@@ -124,4 +123,41 @@ body.page-home .tiles > .tile:hover {
   border-color: var(--tile-accent);
   box-shadow: 0 0 0 1px var(--tile-accent);
   transform: none;
+}
+
+/* Header quick links: black fill, white labels and matching petrol frames */
+header nav {
+  gap: .65rem;
+}
+header nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .4rem .7rem;
+  border: 2px solid #C5E9DC;
+  border-radius: 7px;
+  background: #101014;
+  color: #FFFFFF;
+  text-decoration: none;
+  line-height: 1.25;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+header nav a[href="books.html"] {
+  border-color: #C5E9DC;
+}
+header nav a[href="kinky-test-lab.html"] {
+  border-color: #6BAF9F;
+}
+header nav a[href="socials.html"] {
+  border-color: #205E55;
+}
+header nav a:hover,
+header nav a[aria-current="page"] {
+  color: #FFFFFF;
+  background: #19191F;
+  box-shadow: 0 0 0 1px currentColor;
+}
+header nav a:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
 }
