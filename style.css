@@ -128,3 +128,31 @@ body.page-home .tiles > .tile:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
   transform: translateY(-3px);
 }
+
+/* Seafoam Petrol palette for the three home-page tiles */
+body.page-home .tiles > .tile:nth-child(1) {
+  --tile-accent: #164A43;
+  background: #C5E9DC;
+  border-color: #C5E9DC;
+  color: #164A43;
+}
+body.page-home .tiles > .tile:nth-child(1) h2 { color: #164A43; }
+body.page-home .tiles > .tile:nth-child(1) p { color: #245E54; }
+
+body.page-home .tiles > .tile:nth-child(2) {
+  --tile-accent: #103F38;
+  background: #6BAF9F;
+  border-color: #6BAF9F;
+  color: #103F38;
+}
+body.page-home .tiles > .tile:nth-child(2) h2 { color: #103F38; }
+body.page-home .tiles > .tile:nth-child(2) p { color: #164A43; }
+
+body.page-home .tiles > .tile:nth-child(3) {
+  --tile-accent: #FFFFFF;
+  background: #205E55;
+  border-color: #205E55;
+  color: #FFFFFF;
+}
+body.page-home .tiles > .tile:nth-child(3) h2 { color: #FFFFFF; }
+body.page-home .tiles > .tile:nth-child(3) p { color: #E0F1EC; }
