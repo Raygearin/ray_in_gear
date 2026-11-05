@@ -90,26 +90,28 @@ body.page-lab h1,body.page-lab h2,body.page-lab h3,
 body.page-socials h1,body.page-socials h2,body.page-socials h3{color:var(--tile-accent)}
 body.page-books .match-card,body.page-lab .match-card,body.page-socials .match-card{border-color:var(--tile-accent);background:#101014}
 
-/* Seafoam Petrol styling for homepage tiles and header quick links */
+/* Stronger Seafoam Petrol accents for homepage tiles and header quick links */
+body.page-home {
+  --home-petrol-light: #A4F2DD;
+  --home-petrol-mid: #5BD6B8;
+  --home-petrol-dark: #27B596;
+}
 body.page-home .tiles > .tile:nth-child(1) {
-  --tile-accent: #C5E9DC;
+  --tile-accent: var(--home-petrol-light);
   background: #101014;
-  border: 2px solid #C5E9DC;
+  border: 2px solid var(--home-petrol-light);
 }
 body.page-home .tiles > .tile:nth-child(2) {
-  --tile-accent: #6BAF9F;
+  --tile-accent: var(--home-petrol-mid);
   background: #101014;
-  border: 2px solid #6BAF9F;
+  border: 2px solid var(--home-petrol-mid);
 }
 body.page-home .tiles > .tile:nth-child(3) {
-  --tile-accent: #205E55;
+  --tile-accent: var(--home-petrol-dark);
   background: #101014;
-  border: 2px solid #205E55;
+  border: 2px solid var(--home-petrol-dark);
 }
-body.page-home .tiles > .tile h2 {
-  color: #FFFFFF;
-  font-weight: 700;
-}
+body.page-home .tiles > .tile h2,
 body.page-home .tiles > .tile p {
   color: #FFFFFF;
 }
@@ -125,7 +127,12 @@ body.page-home .tiles > .tile:hover {
   transform: none;
 }
 
-/* Header quick links: black fill, white labels and matching petrol frames */
+/* Match the eyebrow to the muted hero paragraph text */
+body.page-home .hero-copy .eyebrow {
+  color: var(--muted);
+}
+
+/* Header quick links: white labels with stronger matching petrol frames */
 header nav {
   gap: .65rem;
 }
@@ -134,7 +141,7 @@ header nav a {
   align-items: center;
   justify-content: center;
   padding: .4rem .7rem;
-  border: 2px solid #C5E9DC;
+  border: 2px solid var(--home-petrol-light, #A4F2DD);
   border-radius: 7px;
   background: #101014;
   color: #FFFFFF;
@@ -143,13 +150,13 @@ header nav a {
   transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 header nav a[href="books.html"] {
-  border-color: #C5E9DC;
+  border-color: var(--home-petrol-light, #A4F2DD);
 }
 header nav a[href="kinky-test-lab.html"] {
-  border-color: #6BAF9F;
+  border-color: var(--home-petrol-mid, #5BD6B8);
 }
 header nav a[href="socials.html"] {
-  border-color: #205E55;
+  border-color: var(--home-petrol-dark, #27B596);
 }
 header nav a:hover,
 header nav a[aria-current="page"] {
