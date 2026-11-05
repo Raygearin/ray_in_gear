@@ -60,11 +60,11 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 @media(max-width:600px){.match-card{padding:1.1rem;border-radius:8px}.match-title{font-size:2.55rem}.interest-category summary{padding:1rem 2.6rem 1rem .9rem}.interest-category ul{padding-left:2rem}}
 
 /* One continuous footer row: alternating turquoise fields and monochrome photos */
-footer.footer-gallery{display:grid;grid-template-columns:.25fr repeat(8,minmax(0,1fr) .25fr);grid-auto-flow:column;gap:0;width:100%;margin:0;padding:0;border:0;text-align:left;color:var(--ink);font-size:0;line-height:0;overflow:hidden}
-.footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;height:auto;aspect-ratio:4/5;min-width:0;object-fit:cover}
+footer.footer-gallery{display:grid;grid-template-columns:.25fr repeat(8,minmax(0,1fr) .25fr);grid-auto-flow:column;grid-auto-rows:auto;gap:0;width:100%;margin:0;padding:0;border:0;text-align:left;color:var(--ink);font-size:0;line-height:0;overflow:hidden;align-items:stretch}
+.footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;height:100%;aspect-ratio:4/5;min-width:0;object-fit:cover}
 .footer-gallery img{filter:grayscale(1)}
 /* Crop the grey side slivers from the final photo */
-.footer-gallery img:last-of-type{transform:scale(1.08)}
+.footer-gallery img:last-of-type{transform:scale(1.65);object-fit:cover;object-position:center}
 .footer-gallery .footer-color-field{background:#35d0c5}
 .footer-gallery .footer-color-field:nth-child(4n+1){background:#20b9ad}
 .footer-gallery .footer-color-field:nth-child(4n+3){background:#55dfd2}
