@@ -63,6 +63,8 @@ footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:v
 footer.footer-gallery{display:grid;grid-template-columns:.25fr repeat(8,minmax(0,1fr) .25fr);grid-auto-flow:column;gap:0;width:100%;margin:0;padding:0;border:0;text-align:left;color:var(--ink);font-size:0;line-height:0;overflow:hidden}
 .footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;height:auto;aspect-ratio:4/5;min-width:0;object-fit:cover}
 .footer-gallery img{filter:grayscale(1)}
+/* Crop the grey side slivers from the final photo */
+.footer-gallery img:last-of-type{transform:scale(1.08)}
 .footer-gallery .footer-color-field{background:#35d0c5}
 .footer-gallery .footer-color-field:nth-child(4n+1){background:#20b9ad}
 .footer-gallery .footer-color-field:nth-child(4n+3){background:#55dfd2}
@@ -72,4 +74,4 @@ html{min-height:100%;background:var(--bg)}
 body{min-height:100vh;display:flex;flex-direction:column}
 main{flex:1 0 auto}
 .home-main{padding-bottom:1rem}
-footer.footer-gallery{flex:0 0 auto}
+footer.footer-gallery{flex:0 0 auto;margin-bottom:2.45vw}
