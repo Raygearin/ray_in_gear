@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Clear stale Pages deployments
+      - name: Clear stale Pages deployment
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -33,16 +33,10 @@ jobs:
           set -euo pipefail
           repo="$GITHUB_REPOSITORY"
           stale_sha="61df4ce02fca4465371080562faa34ca05a695b3"
+          stale_deployment_id="7578286019"
           gh api --method POST "repos/$repo/pages/deployments/$stale_sha/cancel" || true
-          while IFS=$'\t' read -r deployment_id deployment_sha; do
-            [ -n "$deployment_id" ] || continue
-            statuses="$(gh api "repos/$repo/deployments/$deployment_id/statuses?per_page=100")"
-            if printf '%s' "$statuses" | jq -e 'any(.[]; .state == "in_progress")' >/dev/null; then
-              echo "Deactivating stale in-progress github-pages deployment $deployment_id ($deployment_sha)"
-              gh api --method POST "repos/$repo/deployments/$deployment_id/statuses" -f state=inactive
-              gh api --silent --method DELETE "repos/$repo/deployments/$deployment_id"
-            fi
-          done < <(gh api --paginate "repos/$repo/deployments?environment=github-pages&per_page=100" --jq '.[] | [.id, .sha] | @tsv')
+          gh api --method POST "repos/$repo/deployments/$stale_deployment_id/statuses" -f state=inactive
+          gh api --silent --method DELETE "repos/$repo/deployments/$stale_deployment_id"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
