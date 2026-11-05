@@ -28,3 +28,9 @@ p{color:var(--muted);max-width:65ch}
 .social-intro + h2{margin-top:3rem}
 footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;color:var(--muted);font-size:.85rem}
 @media(max-width:760px){.hero{grid-template-columns:1fr;gap:2rem}.hero-mark{justify-self:center;width:min(78vw,256px)}h1{font-size:clamp(3.2rem,14vw,5.5rem)}.social-intro{grid-template-columns:1fr;gap:1.25rem}.social-intro-photo{width:min(100%,220px);height:auto;max-height:290px;justify-self:end;object-fit:contain}}
+
+.language-divider{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.tile h3{color:var(--accent);margin:1.25rem 0 .5rem}
+.download-box{display:block;margin-top:2rem;padding:1.1rem 1.25rem;border:1px solid var(--accent);background:#211b24;border-radius:8px;text-align:center}
+.download-box a{display:block;color:var(--ink);font-weight:600;text-decoration:none}
+.download-box a:hover{color:var(--accent)}
