@@ -64,7 +64,7 @@ footer.footer-gallery{display:grid;grid-template-columns:.25fr repeat(8,minmax(0
 .footer-gallery img,.footer-gallery .footer-color-field{display:block;width:100%;height:100%;aspect-ratio:4/5;min-width:0;object-fit:cover}
 .footer-gallery img{filter:grayscale(1)}
 /* Crop the grey side slivers from the final photo */
-.footer-gallery img:last-of-type{transform:scale(1.65);object-fit:cover;object-position:center}
+.footer-gallery img:last-of-type{transform:none;object-fit:cover;object-position:center}
 .footer-gallery .footer-color-field{background:#205E55}
 .footer-gallery .footer-color-field:nth-child(4n+1){background:#205E55}
 .footer-gallery .footer-color-field:nth-child(4n+3){background:#205E55}
