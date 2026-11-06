@@ -1,0 +1,147 @@
+name: Activate protected questionnaire download
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/activate-pdf-gate.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  activate-download-form:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Add password form and browser decryption
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          encrypted = Path("assets/questionnaire.enc")
+          if not encrypted.is_file():
+              raise SystemExit("Encrypted PDF is not present; refusing to publish a broken form.")
+
+          page = Path("books.html")
+          text = page.read_text(encoding="utf-8")
+          old = '''        <p class="download-action">
+                    <a class="download-button" href="Interests_Boundaries_Mobile_Contact_Final.pdf.pdf" download="Interests_Boundaries_Mobile_Contact_Final.pdf">Download the questionnaire (PDF)</a>
+                  </p>'''
+          new = '''        <form class="pdf-password-form" id="questionnaire-unlock-form">
+                    <label for="questionnaire-password">Password to unlock the questionnaire</label>
+                    <div class="pdf-password-row">
+                      <input id="questionnaire-password" name="password" type="password" autocomplete="current-password" required>
+                      <button class="download-button" type="submit">Unlock &amp; download PDF</button>
+                    </div>
+                    <p class="pdf-password-status" id="questionnaire-password-status" role="status" aria-live="polite"></p>
+                  </form>
+                  <noscript><p>JavaScript must be enabled to unlock the protected questionnaire.</p></noscript>'''
+          if old not in text:
+              raise SystemExit("Expected original PDF download link was not found; no page changes were made.")
+          text = text.replace(old, new, 1)
+          footer = '  <footer class="footer-gallery" aria-label="Black-and-white photo gallery">'
+          script = '  <script src="assets/pdf-unlock.js" defer></script>\n' + footer
+          if footer not in text:
+              raise SystemExit("Expected page footer not found.")
+          text = text.replace(footer, script, 1)
+          page.write_text(text, encoding="utf-8")
+
+          css = Path("style.css")
+          style = css.read_text(encoding="utf-8")
+          marker = "/* Password-protected questionnaire download */"
+          if marker not in style:
+              style += """
+          
+          /* Password-protected questionnaire download */
+          .pdf-password-form{margin:1.8rem 0 0;padding:1.1rem 1.2rem;background:#131318;border:1px solid var(--line);border-radius:10px;max-width:620px}
+          .pdf-password-form label{display:block;margin-bottom:.65rem;color:var(--ink);font-weight:700}
+          .pdf-password-row{display:flex;gap:.75rem;align-items:stretch;flex-wrap:wrap}
+          .pdf-password-row input{flex:1 1 220px;min-width:0;padding:.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:#101014;color:var(--ink);font:inherit}
+          .pdf-password-row input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+          .pdf-password-row button{cursor:pointer;font:inherit}
+          .pdf-password-row button:disabled{opacity:.65;cursor:wait}
+          .pdf-password-status{min-height:1.4em;margin:.7rem 0 0;color:var(--muted);font-size:.9rem}
+          """
+              css.write_text(style, encoding="utf-8")
+
+          js = r'''(() => {
+            const form = document.getElementById("questionnaire-unlock-form");
+            if (!form) return;
+
+            const status = document.getElementById("questionnaire-password-status");
+            const passwordInput = document.getElementById("questionnaire-password");
+            const encoder = new TextEncoder();
+
+            form.addEventListener("submit", async (event) => {
+              event.preventDefault();
+              const password = passwordInput.value;
+              const button = form.querySelector('button[type="submit"]');
+              button.disabled = true;
+              status.textContent = "Preparing your download…";
+
+              try {
+                const response = await fetch("assets/questionnaire.enc", { cache: "no-store" });
+                if (!response.ok) throw new Error("file-unavailable");
+
+                const bytes = new Uint8Array(await response.arrayBuffer());
+                if (bytes.length < 52 || new TextDecoder().decode(bytes.slice(0, 8)) !== "RAYPDF01") {
+                  throw new Error("file-invalid");
+                }
+
+                const salt = bytes.slice(8, 24);
+                const iv = bytes.slice(24, 36);
+                const ciphertext = bytes.slice(36);
+                const material = await crypto.subtle.importKey(
+                  "raw", encoder.encode(password), "PBKDF2", false, ["deriveKey"]
+                );
+                const key = await crypto.subtle.deriveKey(
+                  { name: "PBKDF2", salt, iterations: 310000, hash: "SHA-256" },
+                  material,
+                  { name: "AES-GCM", length: 256 },
+                  false,
+                  ["decrypt"]
+                );
+                const plaintext = await crypto.subtle.decrypt(
+                  { name: "AES-GCM", iv, additionalData: encoder.encode("RayInGearPDF-v1"), tagLength: 128 },
+                  key,
+                  ciphertext
+                );
+
+                const url = URL.createObjectURL(new Blob([plaintext], { type: "application/pdf" }));
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "Interests_Boundaries_Mobile_Contact_Final.pdf";
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+                status.textContent = "Your questionnaire has been unlocked and downloaded.";
+                passwordInput.value = "";
+              } catch (error) {
+                status.textContent = error && error.message === "file-unavailable"
+                  ? "The protected file is not available yet. Please try again later."
+                  : error && error.message === "file-invalid"
+                    ? "The protected file could not be read. Please contact the site owner."
+                    : "The password is incorrect, or the file could not be decrypted.";
+              } finally {
+                button.disabled = false;
+              }
+            });
+          })();
+          '''
+          Path("assets/pdf-unlock.js").write_text(js, encoding="utf-8")
+          PY
+
+      - name: Commit protected download page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add books.html style.css assets/pdf-unlock.js
+          git commit -m "Activate password-protected questionnaire download"
+          git push
