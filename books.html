@@ -197,15 +197,22 @@
         <p>Download the questionnaire, fill it out in English, and send the completed PDF back to me through one of the channels we're already chatting on.</p>
         <p>Only share what you feel comfortable sharing. Your answers are not consent, and consent can be withdrawn at any time.</p>
         <p>For data protection reasons, please do not enter personal information such as your real name or address in the form.</p>
-        <p class="download-action">
-          <a class="download-button" href="Interests_Boundaries_Mobile_Contact_Final.pdf.pdf" download="Interests_Boundaries_Mobile_Contact_Final.pdf">Download the questionnaire (PDF)</a>
-        </p>
+        <form class="pdf-password-form" id="questionnaire-unlock-form">
+          <label for="questionnaire-password">Password to unlock the questionnaire</label>
+          <div class="pdf-password-row">
+            <input id="questionnaire-password" name="password" type="password" autocomplete="current-password" required>
+            <button class="download-button" type="submit">Unlock &amp; download PDF</button>
+          </div>
+          <p class="pdf-password-status" id="questionnaire-password-status" role="status" aria-live="polite"></p>
+        </form>
+        <noscript><p>JavaScript must be enabled to unlock the protected questionnaire.</p></noscript>
       </section>
     </section>
 
     <p><a href="socials.html">Find me on Socials</a></p>
     <p><a href="index.html">← Back to home</a></p>
   </main>
+  <script src="assets/pdf-unlock.js" defer></script>
   <footer class="footer-gallery" aria-label="Black-and-white photo gallery">
     <span class="footer-color-field" aria-hidden="true"></span>
     <img src="assets/gallery-01.webp" alt="Black-and-white rope bondage photograph" loading="lazy" width="160" height="200">

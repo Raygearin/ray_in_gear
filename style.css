@@ -184,3 +184,14 @@ body.page-socials .social-intro h1 {
 body.page-home .tiles > .tile h2 {
   color: #FFFFFF;
 }
+
+
+/* Password-protected questionnaire download */
+.pdf-password-form{margin:1.8rem 0 0;padding:1.1rem 1.2rem;background:#131318;border:1px solid var(--line);border-radius:10px;max-width:620px}
+.pdf-password-form label{display:block;margin-bottom:.65rem;color:var(--ink);font-weight:700}
+.pdf-password-row{display:flex;gap:.75rem;align-items:stretch;flex-wrap:wrap}
+.pdf-password-row input{flex:1 1 220px;min-width:0;padding:.85rem 1rem;border:1px solid var(--line);border-radius:8px;background:#101014;color:var(--ink);font:inherit}
+.pdf-password-row input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pdf-password-row button{cursor:pointer;font:inherit}
+.pdf-password-row button:disabled{opacity:.65;cursor:wait}
+.pdf-password-status{min-height:1.4em;margin:.7rem 0 0;color:var(--muted);font-size:.9rem}
