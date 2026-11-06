@@ -198,3 +198,10 @@ body.page-home .tiles > .tile h2 {
 
 /* Deploy the protected questionnaire download form. */
 /* Questionnaire history cleanup: no visual styling change. */
+
+
+/* Kinky Test Lab: upcoming meetups tab and announcement panel */
+body.page-lab header nav a[href="#upcoming-meetups"]{border-color:#35d0c5}
+.upcoming-meetups{margin-top:3.25rem;padding:clamp(1.25rem,4vw,2.5rem);border:1px solid var(--line);border-radius:10px;background:#131318;scroll-margin-top:2rem}
+.upcoming-meetups h2{margin:.2rem 0 1rem;color:var(--accent);font-size:clamp(1.8rem,4vw,2.5rem)}
+.upcoming-meetups .meetup-empty{margin:1.5rem 0 0;padding:1rem 1.1rem;border:1px dashed var(--line);border-radius:8px;color:var(--ink);background:#101014}
