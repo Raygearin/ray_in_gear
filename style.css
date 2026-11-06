@@ -197,3 +197,4 @@ body.page-home .tiles > .tile h2 {
 .pdf-password-status{min-height:1.4em;margin:.7rem 0 0;color:var(--muted);font-size:.9rem}
 
 /* Deploy the protected questionnaire download form. */
+/* Questionnaire history cleanup: no visual styling change. */
