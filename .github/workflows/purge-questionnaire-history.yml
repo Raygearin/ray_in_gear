@@ -1,0 +1,44 @@
+name: Remove questionnaire PDF from Git history
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/purge-questionnaire-history.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  purge-history:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Remove every historical copy of the questionnaire PDF
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          echo "Matching questionnaire PDF paths before cleanup:"
+          git log --all --format= --name-only | grep -Ei '(^|/)Interests_Boundaries.*\.pdf' || true
+
+          python -m pip install --disable-pip-version-check git-filter-repo
+          git filter-repo --force --invert-paths --path-glob '*Interests_Boundaries*.pdf*'
+
+          remaining="$(git log --all --format= --name-only | grep -Ei '(^|/)Interests_Boundaries.*\.pdf' || true)"
+          if [ -n "$remaining" ]; then
+            echo "Historical questionnaire PDF paths remain:"
+            echo "$remaining"
+            exit 1
+          fi
+
+          # git-filter-repo removes the origin remote as a safety measure.
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin HEAD:main
