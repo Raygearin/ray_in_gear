@@ -5,13 +5,14 @@
   const status = document.getElementById("questionnaire-password-status");
   const passwordInput = document.getElementById("questionnaire-password");
   const encoder = new TextEncoder();
+  const t = (message) => window.RayGearI18n?.translateText(message) || message;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const password = passwordInput.value;
     const button = form.querySelector('button[type="submit"]');
     button.disabled = true;
-    status.textContent = "Preparing your download…";
+    status.textContent = t("Preparing your download…");
 
     try {
       const response = await fetch("assets/questionnaire.enc", { cache: "no-store" });
@@ -49,14 +50,15 @@
       link.click();
       link.remove();
       window.setTimeout(() => URL.revokeObjectURL(url), 1500);
-      status.textContent = "Your questionnaire has been unlocked and downloaded.";
+      status.textContent = t("Your questionnaire has been unlocked and downloaded.");
       passwordInput.value = "";
     } catch (error) {
-      status.textContent = error && error.message === "file-unavailable"
+      const message = error && error.message === "file-unavailable"
         ? "The protected file is not available yet. Please try again later."
         : error && error.message === "file-invalid"
           ? "The protected file could not be read. Please contact the site owner."
           : "The password is incorrect, or the file could not be decrypted.";
+      status.textContent = t(message);
     } finally {
       button.disabled = false;
     }

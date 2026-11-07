@@ -363,3 +363,41 @@ header .brand-logo{
   object-fit:contain;
   border-radius:0;
 }
+
+
+/* Persistent DE / EN language switch */
+header .language-switch{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.35rem;
+  margin-left:.35rem;
+  white-space:nowrap;
+  color:var(--muted);
+  font-size:.82rem;
+}
+header .language-switch button{
+  appearance:none;
+  border:1px solid transparent;
+  border-radius:5px;
+  padding:.32rem .45rem;
+  background:transparent;
+  color:#FFFFFF;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
+  line-height:1.2;
+}
+header .language-switch button:hover,
+header .language-switch button.is-active{
+  color:#35d0c5;
+  border-color:#35d0c5;
+  background:#101014;
+}
+header .language-switch button:focus-visible{
+  outline:2px solid #FFFFFF;
+  outline-offset:3px;
+}
+@media(max-width:760px){
+  header .language-switch{margin-left:auto}
+}

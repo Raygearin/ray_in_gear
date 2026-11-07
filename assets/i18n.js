@@ -2,6 +2,7 @@
   const STORAGE_KEY = "ray_in_gear_language";
   const dictionary = {
     "Age verification":"Altersbestätigung",
+    "Language":"Sprache",
     "Preparing your download…":"Dein Download wird vorbereitet …",
     "The protected file is not available yet. Please try again later.":"Die geschützte Datei ist noch nicht verfügbar. Bitte versuche es später erneut.",
     "The protected file could not be read. Please contact the site owner.":"Die geschützte Datei konnte nicht gelesen werden. Bitte kontaktiere den Betreiber der Website.",
