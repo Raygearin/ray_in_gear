@@ -1,7 +1,7 @@
 (() => {
   const imageSelector = "img:not(.brand-logo):not(.no-lightbox)";
   const images = Array.from(document.querySelectorAll(imageSelector)).filter((image) => {
-    return !image.closest(".brand-link, .hero-mark") && image.complete !== false;
+    return !image.closest(".brand-link, .hero-mark");
   });
   if (!images.length) return;
 
@@ -99,7 +99,7 @@
     image.classList.add("lightbox-trigger");
     image.tabIndex = 0;
     image.setAttribute("role", "button");
-    image.setAttribute("aria-label", translate("Open image in full-size viewer") + (image.alt ? ": " + image.alt : ""));
+    image.setAttribute("aria-label", translate("Open image in full-size viewer"));
     image.addEventListener("click", (event) => {
       if (event.target.closest("a")) return;
       open(index);
