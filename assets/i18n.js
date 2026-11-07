@@ -161,6 +161,7 @@
     "Find the next community meetups here. Dates and details will be added as soon as they are confirmed.":"Hier findest du die nächsten Community-Meetups. Termine und Details ergänzen wir, sobald sie feststehen.",
     "No upcoming meetups announced yet.":"Aktuell sind noch keine Meetups angekündigt.",
     "Let’s connect":"Lass uns vernetzen",
+    "Let’s connect.":"Lass uns vernetzen.",
     "Find me on social media and other apps.":"Du findest mich auf Social Media und anderen Apps.",
     "Social media":"Soziale Medien",
     "@ray_in_gear · Main account":"@ray_in_gear · Hauptaccount",
