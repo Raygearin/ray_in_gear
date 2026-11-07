@@ -205,3 +205,41 @@ body.page-lab header nav a[href="#upcoming-meetups"]{border-color:#35d0c5}
 .upcoming-meetups{margin-top:3.25rem;padding:clamp(1.25rem,4vw,2.5rem);border:1px solid var(--line);border-radius:10px;background:#131318;scroll-margin-top:2rem}
 .upcoming-meetups h2{margin:.2rem 0 1rem;color:var(--accent);font-size:clamp(1.8rem,4vw,2.5rem)}
 .upcoming-meetups .meetup-empty{margin:1.5rem 0 0;padding:1rem 1.1rem;border:1px dashed var(--line);border-radius:8px;color:var(--ink);background:#101014}
+
+
+/* Kinky Test Lab event overview */
+.lab-event-description{
+  margin:2.5rem 0;
+  padding:clamp(1.25rem,4vw,2.5rem);
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#131318;
+}
+.lab-event-description h2{
+  margin:.15rem 0 1rem;
+  color:var(--accent);
+  font-size:clamp(1.8rem,4vw,2.5rem);
+}
+.lab-event-description>p{
+  max-width:78ch;
+}
+.event-principles{
+  display:grid;
+  gap:1rem;
+  margin:1.5rem 0 0;
+  padding-left:1.25rem;
+  color:var(--muted);
+}
+.event-principles li{
+  padding-left:.35rem;
+}
+.event-principles li::marker{
+  color:var(--accent);
+}
+.event-principles strong{
+  color:var(--ink);
+}
+@media(max-width:600px){
+  .lab-event-description{padding:1.1rem;border-radius:8px}
+  .event-principles{padding-left:1.1rem;gap:.85rem}
+}
