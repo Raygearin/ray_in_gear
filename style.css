@@ -333,3 +333,23 @@ body.age-gate-active{overflow:hidden}
   .age-gate-actions{display:grid}
   .age-gate-actions button{width:100%}
 }
+
+
+/* Small brand logo beside Ray_in_Gear in the site header */
+header .brand-link{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  white-space:nowrap;
+}
+header .brand-logo{
+  display:block;
+  width:32px;
+  height:32px;
+  object-fit:contain;
+  flex:0 0 32px;
+  border-radius:50%;
+}
+header .brand-link strong{
+  color:#FFFFFF;
+}
