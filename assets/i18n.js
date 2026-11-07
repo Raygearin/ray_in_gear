@@ -194,10 +194,10 @@
     const original = originalText.get(node);
     const trimmed = original.trim();
     if (!trimmed) return;
-    const normalized = trimmed.replace(/\\s+/g, " ");
+    const normalized = trimmed.replace(/\s+/g, " ");
     const translated = language === "de" ? (dictionary[normalized] || normalized) : normalized;
-    const leading = original.match(/^\\s*/)?.[0] || "";
-    const trailing = original.match(/\\s*$/)?.[0] || "";
+    const leading = original.match(/^\s*/)?.[0] || "";
+    const trailing = original.match(/\s*$/)?.[0] || "";
     node.nodeValue = leading + translated + trailing;
   }
 
@@ -217,7 +217,7 @@
         originalAttributes.set(element, saved);
       }
       Object.entries(saved).forEach(([name, original]) => {
-        const key = original.trim().replace(/\\s+/g, " ");
+        const key = original.trim().replace(/\s+/g, " ");
         element.setAttribute(name, language === "de" ? (dictionary[key] || original) : original);
       });
     });
