@@ -2,6 +2,11 @@
   const STORAGE_KEY = "ray_in_gear_language";
   const dictionary = {
     "Age verification":"Altersbestätigung",
+    "Preparing your download…":"Dein Download wird vorbereitet …",
+    "The protected file is not available yet. Please try again later.":"Die geschützte Datei ist noch nicht verfügbar. Bitte versuche es später erneut.",
+    "The protected file could not be read. Please contact the site owner.":"Die geschützte Datei konnte nicht gelesen werden. Bitte kontaktiere den Betreiber der Website.",
+    "The password is incorrect, or the file could not be decrypted.":"Das Passwort ist falsch oder die Datei konnte nicht entschlüsselt werden.",
+    "Your questionnaire has been unlocked and downloaded.":"Dein Fragebogen wurde freigeschaltet und heruntergeladen.",
     "18+ only":"Nur ab 18",
     "This website contains adult-oriented themes and is intended only for visitors aged 18 or over. Please confirm that you are at least 18 before continuing.":"Diese Website enthält Themen für Erwachsene und ist ausschließlich für Personen ab 18 Jahren bestimmt. Bitte bestätige, dass du mindestens 18 Jahre alt bist, bevor du fortfährst.",
     "I am 18 or older":"Ich bin 18 oder älter",
@@ -137,7 +142,8 @@
     "Alpha, Master, Sir… call me whatever you want. The main thing is that you do what I say—or I’ll take it.":"Alpha, Master, Sir … nenn mich, wie du möchtest. Hauptsache, du tust, was ich sage – sonst übernehme ich das.",
     "Creating a space to explore, connect & be free together. For curious minds, open hearts, and the community we create.":"Einen Raum schaffen, um gemeinsam Neues zu entdecken, Kontakte zu knüpfen und frei zu sein. Für neugierige Köpfe, offene Herzen und die Gemeinschaft, die wir gemeinsam gestalten.",
     "The essence of the event":"Das Wesentliche des Events",
-    "The ":"Das ",
+    "The":"Das",
+    "The event is":"Das Event ist",
     " is a privately organized BDSM weekend. Its focus is on exploring together, discovering different forms of play, sharing personal experiences, and creating a safe and welcoming atmosphere.":" ist ein privat organisiertes BDSM-Wochenende. Im Mittelpunkt stehen das gemeinsame Entdecken, verschiedene Formen des Spiels, der Austausch persönlicher Erfahrungen und eine sichere, einladende Atmosphäre.",
     "Personal invitations:":"Persönliche Einladungen:",
     "Participants are carefully selected based on their preferences, experience, and personalities to create the best possible group dynamic.":"Die Teilnehmenden werden sorgfältig nach ihren Vorlieben, Erfahrungen und Persönlichkeiten ausgewählt, damit eine möglichst stimmige Gruppendynamik entsteht.",
@@ -169,9 +175,8 @@
     "socials.html": { en: "Socials — Ray_in_Gear", de: "Social Media — Ray_in_Gear" }
   };
 
-  const germanToEnglish = Object.fromEntries(
-    Object.entries(dictionary).map(([en, de]) => [de, en])
-  );
+  const originalText = new WeakMap();
+  const originalAttributes = new WeakMap();
 
   function getLanguage() {
     try {
@@ -182,16 +187,15 @@
   }
 
   function translateTextNode(node, language) {
-    const original = node.nodeValue;
+    if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+    const original = originalText.get(node);
     const trimmed = original.trim();
     if (!trimmed) return;
-    const normalized = trimmed.replace(/\s+/g, " ");
-    const translated = language === "de" ? dictionary[normalized] : germanToEnglish[normalized];
-    if (translated) {
-      const leading = original.match(/^\s*/)?.[0] || "";
-      const trailing = original.match(/\s*$/)?.[0] || "";
-      node.nodeValue = leading + translated + trailing;
-    }
+    const normalized = trimmed.replace(/\\s+/g, " ");
+    const translated = language === "de" ? (dictionary[normalized] || normalized) : normalized;
+    const leading = original.match(/^\\s*/)?.[0] || "";
+    const trailing = original.match(/\\s*$/)?.[0] || "";
+    node.nodeValue = leading + translated + trailing;
   }
 
   function applyLanguage(language) {
@@ -199,6 +203,21 @@
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) translateTextNode(node, language);
+
+    document.querySelectorAll("[alt], [aria-label], [title], [placeholder]").forEach((element) => {
+      let saved = originalAttributes.get(element);
+      if (!saved) {
+        saved = {};
+        ["alt", "aria-label", "title", "placeholder"].forEach((name) => {
+          if (element.hasAttribute(name)) saved[name] = element.getAttribute(name);
+        });
+        originalAttributes.set(element, saved);
+      }
+      Object.entries(saved).forEach(([name, original]) => {
+        const key = original.trim().replace(/\\s+/g, " ");
+        element.setAttribute(name, language === "de" ? (dictionary[key] || original) : original);
+      });
+    });
 
     const currentPage = location.pathname.split("/").pop() || "index.html";
     if (pageTitles[currentPage]) document.title = pageTitles[currentPage][language];
