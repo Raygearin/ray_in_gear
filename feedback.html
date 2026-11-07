@@ -8,6 +8,21 @@
   <link rel="canonical" href="socials.html">
 </head>
 <body>
+  <div class="age-gate" id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title" aria-describedby="age-gate-description">
+    <div class="age-gate-panel">
+      <p class="eyebrow">Age verification</p>
+      <h1 id="age-gate-title">18+ only</h1>
+      <p id="age-gate-description">This website contains adult-oriented themes and is intended only for visitors aged 18 or over. Please confirm that you are at least 18 before continuing.</p>
+      <div class="age-gate-actions">
+        <button type="button" id="age-confirm-adult">I am 18 or older</button>
+        <button type="button" id="age-confirm-underage">I am under 18</button>
+      </div>
+      <p class="age-gate-denied" tabindex="-1" hidden>Access denied. You must be 18 or older to view this website.</p>
+      <noscript>JavaScript must be enabled to confirm your age and continue.</noscript>
+    </div>
+  </div>
+
   <p>Feedback has moved to <a href="socials.html">Socials</a>.</p>
+  <script src="assets/age-gate.js?v=20261107" defer></script>
 </body>
 </html>
