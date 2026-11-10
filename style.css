@@ -605,3 +605,28 @@ body.page-home .instagram-section{
   .instagram-feed-details{flex-basis:calc(100% - 64px)}
   .instagram-profile-link{width:100%}
 }
+
+
+/* Subtle cross-page transitions for same-origin navigation */
+@view-transition{
+  navigation:auto;
+}
+::view-transition-old(root){
+  animation:ray-page-exit 180ms cubic-bezier(.2,.7,.2,1) both;
+}
+::view-transition-new(root){
+  animation:ray-page-enter 240ms cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes ray-page-exit{
+  to{opacity:0;transform:translateY(-4px)}
+}
+@keyframes ray-page-enter{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){
+    animation-duration:1ms!important;
+  }
+}
