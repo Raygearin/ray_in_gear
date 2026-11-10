@@ -1,6 +1,12 @@
 (() => {
   const STORAGE_KEY = "ray_in_gear_language";
   const dictionary = {
+    "Latest from Instagram":"Neu auf Instagram",
+    "On Instagram":"Auf Instagram",
+    "New posts, Reels and moments from":"Neue Beiträge, Reels und Einblicke von",
+    "Follow on Instagram":"Auf Instagram folgen",
+    "Discover the latest posts and Reels on Instagram.":"Entdecke die neuesten Beiträge und Reels auf Instagram.",
+    "View profile":"Profil ansehen",
     "Age verification":"Altersbestätigung",
     "Image viewer":"Bildansicht",
     "Close image viewer":"Bildansicht schließen",
